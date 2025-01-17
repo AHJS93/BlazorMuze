@@ -1,7 +1,10 @@
 ﻿
 <MudNavMenu>
     <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
-    <MudNavLink Href="notes" Match="NavLinkMatch.Prefix">Notes</MudNavLink>
+    <MudNavGroup Title="Notes" Expanded="false">
+        <MudNavLink Href="chromaticNotes" Match="NavLinkMatch.Prefix">Chromatic notes</MudNavLink>
+        <MudNavLink Href="terminology" Match="NavLinkMatch.Prefix">Terminology</MudNavLink>
+    </MudNavGroup>
     <MudNavLink Href="chords" Match="NavLinkMatch.Prefix">Chords</MudNavLink>
     <MudNavLink Href="modes" Match="NavLinkMatch.Prefix">Modes</MudNavLink>
 </MudNavMenu>

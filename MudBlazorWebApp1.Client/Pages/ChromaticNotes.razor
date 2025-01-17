@@ -1,0 +1,49 @@
+﻿@page "/chromaticNotes"
+
+<PageTitle>Chromatic Notes</PageTitle>
+
+<h1 Style="@($"color:{Colors.DeepPurple.Lighten2}; font-size:48px;")">Chromatic Notes</h1>
+
+<MudDivider />
+<p style="font-size:32px;">In western music there are <strong>12 chromatic notes.</strong></p>
+<br />
+<MudCard>
+    <MudCardContent>
+        <MudText Typo="Typo.h6" Align="Align.Center">
+            Ascending: Notice that there are 5 <em>sharped (#) </em>notes.
+        </MudText>
+        <MudText Typo="Typo.h5" Align="Align.Center">
+            A - A# - B - C - C# - D - D# - E - F - F# - G - G#
+        </MudText>
+    </MudCardContent>
+</MudCard>
+<br />
+<MudCard>
+    <MudCardContent>
+        <MudText Typo="Typo.h6" Align="Align.Center">
+            Descending: Notice that there are 5 <em>flatted (b) </em>notes.
+        </MudText>
+        <MudText Typo="Typo.h5" Align="Align.Center">
+            A - Ab - G - Gb - F - E - Eb - D - Db - C - B - Bb
+        </MudText>
+    </MudCardContent>
+</MudCard>
+<br />
+<MudDivider />
+<p style="font-size:32px;">Notes are cyclical, meaning that they repeat infinitely at ever increasing or decreasing frequencies.</p>
+<br />
+<MudCard>
+    <MudCardContent>
+        <MudText Typo="Typo.h6" Align="Align.Center">
+            Example: <em>Starting from middle C and ascending. Here we cover two octaves.</em>
+        </MudText>
+        <MudText Typo="Typo.h5" Align="Align.Center">
+            C - C# - D - D# - E - F - F# - G - G# - A - A# - B - C - C# - D - D# - E - F - F# - G - G# - A - A# - B - C
+        </MudText>
+    </MudCardContent>
+</MudCard>
+<MudDivider />
+
+@code {
+
+}
