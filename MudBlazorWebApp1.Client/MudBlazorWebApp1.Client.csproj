@@ -9,8 +9,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="imgs\intervalsBase.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\intervalsBase.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.*" />
     <PackageReference Include="MudBlazor" Version="7.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="wwwroot\intervalsBase.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="imgs\" />
   </ItemGroup>
 
 </Project>

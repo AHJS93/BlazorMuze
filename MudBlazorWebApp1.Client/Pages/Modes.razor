@@ -29,7 +29,7 @@
     <MudButton>Locrian</MudButton>
 </MudButtonGroup>*@
 
-<MudToggleGroup T="string" @bind-Value="_selectedNote" Rounded="false" Outlined="true" Ripple="true" SelectionMode="SelectionMode.SingleSelection" Width="auto">
+<MudToggleGroup T="string" @bind-Value="_selectedNote" Rounded="false" Outlined="true" Ripple="true" SelectionMode="SelectionMode.ToggleSelection" Width="auto" CheckMark="true">
     <MudToggleItem Value="@("A")"></MudToggleItem>
     <MudToggleItem Value="@("A#/Bb")"></MudToggleItem>
     <MudToggleItem Value="@("B")"></MudToggleItem>
@@ -44,8 +44,8 @@
     <MudToggleItem Value="@("G#/Ab")"></MudToggleItem>
 </MudToggleGroup>
 <br />
-<MudToggleGroup T="string" @bind-Value="_selectedMode" Rounded="false" Outlined="true" Ripple="true" SelectionMode="SelectionMode.SingleSelection" Width="auto" Color="Color.Tertiary">
-    <MudToggleItem Value="@("Ionian")" @onselect="()=>calcIonian()"></MudToggleItem>
+<MudToggleGroup T="string" @bind-Value="_selectedMode" Rounded="false" Outlined="true" Ripple="true" SelectionMode="SelectionMode.ToggleSelection" Width="auto" Color="Color.Tertiary" CheckMark="true">
+    <MudToggleItem Value="@("Ionian")"></MudToggleItem>
     <MudToggleItem Value="@("Dorian")"></MudToggleItem>
     <MudToggleItem Value="@("Phrygian")"></MudToggleItem>
     <MudToggleItem Value="@("Lydian")"></MudToggleItem>
@@ -53,32 +53,243 @@
     <MudToggleItem Value="@("Aeolian")"></MudToggleItem>
     <MudToggleItem Value="@("Locrian")"></MudToggleItem>
 </MudToggleGroup>
-
 <br />
-<MudCard>
-    <MudCardContent>
-        <MudText Typo="Typo.h4" Align="Align.Center">
-            @_selectedNote @_selectedMode
-        </MudText>
-        <br />
-        <MudText Typo="Typo.h4" Align="Align.Center">
-            @_note1 @_note2 @_note3 @_note4 @_note5 @_note6 @_note7
-        </MudText>
-    </MudCardContent>
-</MudCard>
+<MudGrid Spacing="6" Justify="Justify.Center" Style="margin-top:10px">
+    <MudCard Style="width:auto;margin:10px">
+        <MudCardContent>
+            <MudText Typo="Typo.h5" Align="Align.Left">
+                <em>Mode:</em> @_selectedMode<br /><em>Formula: </em>@formula<br /><em>Feeling: </em>@feeling
+            </MudText>
+        </MudCardContent>
+    </MudCard>
+    <MudCard Style="width:auto;margin:10px">
+        <MudCardContent>
+            <MudText Typo="Typo.h5" Align="Align.Center">
+                @_noteHead1
+            </MudText>
+            <MudText Typo="Typo.h4" Align="Align.Center" Color="Color.Success">
+                @_note1
+            </MudText>
+        </MudCardContent>
+    </MudCard>
+    <MudCard Style="width:auto;margin:10px">
+        <MudCardContent>
+            <MudText Typo="Typo.h5" Align="Align.Center">
+                @_noteHead2
+            </MudText>
+            <MudText Typo="Typo.h4" Align="Align.Center" Color="Color.Success">
+                @_note2
+            </MudText>
+        </MudCardContent>
+    </MudCard>
+    <MudCard Style="width:auto;margin:10px">
+        <MudCardContent>
+            <MudText Typo="Typo.h5" Align="Align.Center">
+                @_noteHead3
+            </MudText>
+            <MudText Typo="Typo.h4" Align="Align.Center" Color="Color.Success">
+                @_note3
+            </MudText>
+        </MudCardContent>
+    </MudCard>
+    <MudCard Style="width:auto;margin:10px">
+        <MudCardContent>
+            <MudText Typo="Typo.h5" Align="Align.Center">
+                @_noteHead4
+            </MudText>
+            <MudText Typo="Typo.h4" Align="Align.Center" Color="Color.Success">
+                @_note4
+            </MudText>
+        </MudCardContent>
+    </MudCard>
+    <MudCard Style="width:auto;margin:10px">
+        <MudCardContent>
+            <MudText Typo="Typo.h5" Align="Align.Center">
+                @_noteHead5
+            </MudText>
+            <MudText Typo="Typo.h4" Align="Align.Center" Color="Color.Success">
+                @_note5
+            </MudText>
+        </MudCardContent>
+    </MudCard>
+    <MudCard Style="width:auto;margin:10px">
+        <MudCardContent>
+            <MudText Typo="Typo.h5" Align="Align.Center">
+                @_noteHead6
+            </MudText>
+            <MudText Typo="Typo.h4" Align="Align.Center" Color="Color.Success">
+                @_note6
+            </MudText>
+        </MudCardContent>
+    </MudCard>
+    <MudCard Style="width:auto;margin:10px">
+        <MudCardContent>
+            <MudText Typo="Typo.h5" Align="Align.Center">
+                @_noteHead7
+            </MudText>
+            <MudText Typo="Typo.h4" Align="Align.Center" Color="Color.Success">
+                @_note7
+            </MudText>
+        </MudCardContent>
+    </MudCard>
+</MudGrid>
+<br />
+
+@if (_selectedMode == "Ionian"){
+    int selectedIndex = notes.IndexOf(_selectedNote);
+    List<string> ionianHeadings = new List<string>() { "I(Maj)", "ii(min)", "iii(min)", "IV(Maj)", "V(Maj)", "vi(min)", "vii°(dim)" };
+    formula = "1-2-3-4-5-6-7";
+    feeling = "Happy, upbeat, triumphant";
+    _noteHead1 = ionianHeadings[0];
+    _noteHead2 = ionianHeadings[1];
+    _noteHead3 = ionianHeadings[2];
+    _noteHead4 = ionianHeadings[3];
+    _noteHead5 = ionianHeadings[4];
+    _noteHead6 = ionianHeadings[5];
+    _noteHead7 = ionianHeadings[6];
+    _note1 = notes[selectedIndex + ionianIntervals[0]].ToString();
+    _note2 = notes[selectedIndex + ionianIntervals[1]].ToString();
+    _note3 = notes[selectedIndex + ionianIntervals[2]].ToString();
+    _note4 = notes[selectedIndex + ionianIntervals[3]].ToString();
+    _note5 = notes[selectedIndex + ionianIntervals[4]].ToString();
+    _note6 = notes[selectedIndex + ionianIntervals[5]].ToString();
+    _note7 = notes[selectedIndex + ionianIntervals[6]].ToString();
+}else if (_selectedMode == "Dorian") {
+    List<string> dorianHeadings = new List<string>() { "i(min)", "ii(min)", "III(Maj)", "IV(Maj)", "v(min)", "vi°(dim)", "VII(Maj)" };
+    formula = "1-2-b3-4-5-6-b7";
+    feeling = "Moody, funky, dark";
+    _noteHead1 = dorianHeadings[0];
+    _noteHead2 = dorianHeadings[1];
+    _noteHead3 = dorianHeadings[2];
+    _noteHead4 = dorianHeadings[3];
+    _noteHead5 = dorianHeadings[4];
+    _noteHead6 = dorianHeadings[5];
+    _noteHead7 = dorianHeadings[6];
+    int selectedIndex = notes.IndexOf(_selectedNote);
+    _note1 = notes[selectedIndex + dorianIntervals[0]].ToString();
+    _note2 = notes[selectedIndex + dorianIntervals[1]].ToString();
+    _note3 = notes[selectedIndex + dorianIntervals[2]].ToString();
+    _note4 = notes[selectedIndex + dorianIntervals[3]].ToString();
+    _note5 = notes[selectedIndex + dorianIntervals[4]].ToString();
+    _note6 = notes[selectedIndex + dorianIntervals[5]].ToString();
+    _note7 = notes[selectedIndex + dorianIntervals[6]].ToString();
+}else if (_selectedMode == "Phrygian") {
+    List<string> phrygianHeadings = new List<string>() { "i(min)", "II(Maj)", "III(Maj)", "iv(min)", "v°(dim)", "VI(Maj)", "vii(min)" };
+    formula = "1-b2-b3-4-5-b6-7";
+    feeling = "Dark, exotic, strange";
+    _noteHead1 = phrygianHeadings[0];
+    _noteHead2 = phrygianHeadings[1];
+    _noteHead3 = phrygianHeadings[2];
+    _noteHead4 = phrygianHeadings[3];
+    _noteHead5 = phrygianHeadings[4];
+    _noteHead6 = phrygianHeadings[5];
+    _noteHead7 = phrygianHeadings[6];
+    int selectedIndex = notes.IndexOf(_selectedNote);
+    _note1 = notes[selectedIndex + phrygianIntervals[0]].ToString();
+    _note2 = notes[selectedIndex + phrygianIntervals[1]].ToString();
+    _note3 = notes[selectedIndex + phrygianIntervals[2]].ToString();
+    _note4 = notes[selectedIndex + phrygianIntervals[3]].ToString();
+    _note5 = notes[selectedIndex + phrygianIntervals[4]].ToString();
+    _note6 = notes[selectedIndex + phrygianIntervals[5]].ToString();
+    _note7 = notes[selectedIndex + phrygianIntervals[6]].ToString();
+}else if (_selectedMode == "Lydian") {
+    List<string> lydianHeadings = new List<string>() { "I(Maj)", "II(Maj)", "iii(min)", "iv°(dim)", "V(Maj)", "vi(min)", "vii(min)" };
+    formula = "1-2-3-#4-5-6-7";
+    feeling = "Bright, wistful, floaty";
+    _noteHead1 = lydianHeadings[0];
+    _noteHead2 = lydianHeadings[1];
+    _noteHead3 = lydianHeadings[2];
+    _noteHead4 = lydianHeadings[3];
+    _noteHead5 = lydianHeadings[4];
+    _noteHead6 = lydianHeadings[5];
+    _noteHead7 = lydianHeadings[6];
+    int selectedIndex = notes.IndexOf(_selectedNote);
+    _note1 = notes[selectedIndex + lydianIntervals[0]].ToString();
+    _note2 = notes[selectedIndex + lydianIntervals[1]].ToString();
+    _note3 = notes[selectedIndex + lydianIntervals[2]].ToString();
+    _note4 = notes[selectedIndex + lydianIntervals[3]].ToString();
+    _note5 = notes[selectedIndex + lydianIntervals[4]].ToString();
+    _note6 = notes[selectedIndex + lydianIntervals[5]].ToString();
+    _note7 = notes[selectedIndex + lydianIntervals[6]].ToString();
+}else if (_selectedMode == "Mixolydian") {
+    List<string> mixolydianHeadings = new List<string>() { "I(Maj)", "ii(min)", "iii°(dim)", "IV(Maj)", "v(min)", "vi(min)", "VII(Maj)" };
+    formula = "1-2-3-4-5-6-b7";
+    feeling = "Rockin, biting, bright";
+    _noteHead1 = mixolydianHeadings[0];
+    _noteHead2 = mixolydianHeadings[1];
+    _noteHead3 = mixolydianHeadings[2];
+    _noteHead4 = mixolydianHeadings[3];
+    _noteHead5 = mixolydianHeadings[4];
+    _noteHead6 = mixolydianHeadings[5];
+    _noteHead7 = mixolydianHeadings[6];
+    int selectedIndex = notes.IndexOf(_selectedNote);
+    _note1 = notes[selectedIndex + mixolydianIntervals[0]].ToString();
+    _note2 = notes[selectedIndex + mixolydianIntervals[1]].ToString();
+    _note3 = notes[selectedIndex + mixolydianIntervals[2]].ToString();
+    _note4 = notes[selectedIndex + mixolydianIntervals[3]].ToString();
+    _note5 = notes[selectedIndex + mixolydianIntervals[4]].ToString();
+    _note6 = notes[selectedIndex + mixolydianIntervals[5]].ToString();
+    _note7 = notes[selectedIndex + mixolydianIntervals[6]].ToString();
+}else if (_selectedMode == "Aeolian") {
+    List<string> aeolianHeadings = new List<string>() { "i(min)", "ii°(dim)", "III(Maj)", "iv(min)", "v(min)", "VI(Maj)", "VII(Maj)" };
+    formula = "1-2-b3-4-5-b6-b7";
+    feeling = "Sad, melancholy, dark";
+    _noteHead1 = aeolianHeadings[0];
+    _noteHead2 = aeolianHeadings[1];
+    _noteHead3 = aeolianHeadings[2];
+    _noteHead4 = aeolianHeadings[3];
+    _noteHead5 = aeolianHeadings[4];
+    _noteHead6 = aeolianHeadings[5];
+    _noteHead7 = aeolianHeadings[6];
+    int selectedIndex = notes.IndexOf(_selectedNote);
+    _note1 = notes[selectedIndex + aeolianIntervals[0]].ToString();
+    _note2 = notes[selectedIndex + aeolianIntervals[1]].ToString();
+    _note3 = notes[selectedIndex + aeolianIntervals[2]].ToString();
+    _note4 = notes[selectedIndex + aeolianIntervals[3]].ToString();
+    _note5 = notes[selectedIndex + aeolianIntervals[4]].ToString();
+    _note6 = notes[selectedIndex + aeolianIntervals[5]].ToString();
+    _note7 = notes[selectedIndex + aeolianIntervals[6]].ToString();
+}else if (_selectedMode == "Locrian") {
+    List<string> locrianHeadings = new List<string>() { "i°(dim)", "II(Maj)", "iii(min)", "iv(min)", "V(Maj)", "VI(Maj)", "vii(min)" };
+    formula = "1-b2-b3-4-b5-b6-b7";
+    feeling = "Discordant, unresolved";
+    _noteHead1 = locrianHeadings[0];
+    _noteHead2 = locrianHeadings[1];
+    _noteHead3 = locrianHeadings[2];
+    _noteHead4 = locrianHeadings[3];
+    _noteHead5 = locrianHeadings[4];
+    _noteHead6 = locrianHeadings[5];
+    _noteHead7 = locrianHeadings[6];
+    int selectedIndex = notes.IndexOf(_selectedNote);
+    _note1 = notes[selectedIndex + locrianIntervals[0]].ToString();
+    _note2 = notes[selectedIndex + locrianIntervals[1]].ToString();
+    _note3 = notes[selectedIndex + locrianIntervals[2]].ToString();
+    _note4 = notes[selectedIndex + locrianIntervals[3]].ToString();
+    _note5 = notes[selectedIndex + locrianIntervals[4]].ToString();
+    _note6 = notes[selectedIndex + locrianIntervals[5]].ToString();
+    _note7 = notes[selectedIndex + locrianIntervals[6]].ToString();
+}
 
 @code {
-    private string _selectedMode = "";
-    private string _selectedNote = "";
-    private string _note1 = "";
-    private string _note2 = "";
-    private string _note3 = "";
-    private string _note4 = "";
-    private string _note5 = "";
-    private string _note6 = "";
-    private string _note7 = "";
-
-    List<string> notes = new List<string>() { "C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B", "C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B" };
+    public string? _selectedMode { get; set; }
+    public string? _selectedNote { get; set; }
+    public string? _note1 { get; set; }
+    public string? _note2 { get; set; }
+    public string? _note3 { get; set; }
+    public string? _note4 { get; set; }
+    public string? _note5 { get; set; }
+    public string? _note6 { get; set; }
+    public string? _note7 { get; set; }
+    public string? _noteHead1 { get; set; }
+    public string? _noteHead2 { get; set; }
+    public string? _noteHead3 { get; set; }
+    public string? _noteHead4 { get; set; }
+    public string? _noteHead5 { get; set; }
+    public string? _noteHead6 { get; set; }
+    public string? _noteHead7 { get; set; }
+    public string? formula { get; set; }
+    public string? feeling { get; set; }
+    string[] ionianHeadings = { "I", "ii", "iii", "IV", "V", "vi", "vii" };
 
     List<int> ionianIntervals = new List<int>() { 0, 2, 4, 5, 7, 9, 11 };
     List<int> dorianIntervals = new List<int>() { 0, 2, 3, 5, 7, 9, 10 };
@@ -87,20 +298,6 @@
     List<int> mixolydianIntervals = new List<int>() { 0, 2, 4, 5, 7, 9, 10 };
     List<int> aeolianIntervals = new List<int>() { 0, 2, 3, 5, 7, 8, 10 };
     List<int> locrianIntervals = new List<int>() { 0, 1, 3, 5, 6, 8, 10 };
-
-    private void calcIonian()
-    {
-
-        List<string> finalNotes = new List<string>() { _note1, _note2, _note3, _note4, _note5, _note6, _note7 };
-        int selectedIndex = notes.IndexOf(_selectedNote);
-
-        _note1 = notes[selectedIndex + ionianIntervals[0]].ToString();
-        _note2 = notes[selectedIndex + ionianIntervals[1]].ToString();
-        _note3 = notes[selectedIndex + ionianIntervals[2]].ToString();
-        _note4 = notes[selectedIndex + ionianIntervals[3]].ToString();
-        _note5 = notes[selectedIndex + ionianIntervals[4]].ToString();
-        _note6 = notes[selectedIndex + ionianIntervals[5]].ToString();
-        _note7 = notes[selectedIndex + ionianIntervals[6]].ToString();
-        
-    }
+    List<string> notes = new List<string>() { "C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B", "C", "C#/Db", "D", "D#/Eb", "E", "F", "F#/Gb", "G", "G#/Ab", "A", "A#/Bb", "B" };
+    List<string> modesList = new List<string>() { "Ionian", "Dorian", "Phrygian", "Lydian", "Mixolydian", "Aeolian", "Locrian" };
 }
