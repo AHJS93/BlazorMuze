@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
     <StaticWebAssetProjectMode>Default</StaticWebAssetProjectMode>
-	  <GHPages>true</GHPages>
+    <GHPages>true</GHPages>
   </PropertyGroup>
 
   <ItemGroup>
